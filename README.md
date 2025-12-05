@@ -66,4 +66,11 @@ AnythingLLM uses a **static, workspace-level LLM** for all queries — whether a
 
 3. Run the evaluation
    ```bash
+
+## 🙏 Acknowledgements
+The design of the Intelligent Model Router was inspired by the dynamic model routing logic in the open-source project **[PatioAI](https://github.com/AKIFQ/patioai)**.  
+Specifically, the rule-based classification approach builds upon concepts from [`lib/ai/modelRouter.ts`](https://github.com/AKIFQ/patioai/blob/aa3cda3f8d0bd0a48f8e2ba740805dc4a4994bd1/lib/ai/modelRouter.ts#L25).
+
+This project adapts and extends that idea into a **quantitatively evaluated, query-aware router** for Retrieval-Augmented Generation (RAG) systems.
    python rag_qa_bgem3_eval.py
+
