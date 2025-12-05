@@ -59,3 +59,11 @@ AnythingLLM uses a **static, workspace-level LLM** for all queries — whether a
    ollama pull gpt-oss:20b
    ollama pull deepseek-r1:32b
    ollama pull llama2-chinese
+
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+3. Run the evaluation
+   ```bash
+   python rag_qa_bgem3_eval.py
