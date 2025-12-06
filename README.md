@@ -64,9 +64,9 @@ AnythingLLM uses a **static, workspace-level LLM** for all queries — whether a
    ```bash
    python ImprovedRouter.py
 3. **See integration simulation**:
-  ```bash
-  python integration_demo.py
-  ```
+   ```bash
+    python integration_demo.py
+   ```
 ---
 
 🙏 **Acknowledgements**
@@ -77,3 +77,4 @@ This project adapts and extends that idea into a quantitatively evaluated, query
 AnythingLLM (https://github.com/Mintplex-Labs/anything-llm?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL)
 BGE-M3 Embeddings (https://huggingface.co/BAAI/bge-m3?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL)
 Asai et al. (2023). Self-RAG (https://arxiv.org/abs/2310.11511?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL&file=2310.11511)
+
