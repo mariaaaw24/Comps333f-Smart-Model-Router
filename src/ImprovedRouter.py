@@ -7,8 +7,8 @@ Built By: Maria Dharshini (sID: 13126390)
 [**Inferences based on performance evaluation conducted using AnythingLLM**]
 
 From the results:
-- gt-oss:20b : Best solution quality (but SLOWER)
-- deepseek-r1:14b : Great quality and fast
+- gpt-oss:20b : Best solution quality (but SLOWER)
+- deepseek-r1:32b : Great quality and fast
 - llama2-chinese: Basic quality (but FASTEST)
 
 (NOTE: All comparisons are made comparatively)
@@ -28,10 +28,12 @@ class ImprovedRouter:
     """
     def __init__(self):
         #Our models used for testing on AnythingLLM
+        #quality = final_score * 10 (from 0-1 scale to 0-10)
+        #speed = average response time in seconds
         self.model_performance = {
-            "gt-oss:20b": {"quality":10, "speed": 30.6},
-            "deepseek-r1:14b": {"quality":9, "speed": 36.0},
-            "llama2-chinese": {"quality": 6.3, "speed": 1.7}
+            "gpt-oss:20b": {"quality": 7.16, "speed": 41.7},
+            "deepseek-r1:32b": {"quality": 7.02, "speed": 150.0},
+            "llama2-chinese": {"quality": 5.51, "speed": 3.0}
         }
         
         #Patterns recognized from course content testing: Using COMPS333F_LAB3_SOLUTIONS
