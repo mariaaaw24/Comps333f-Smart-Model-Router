@@ -9,7 +9,7 @@ User asks questions -> Router analyses question -> Select best model -> Calls An
 """
 
 import json
-from my_try import ImprovedRouter
+from ImprovedRouter import ImprovedRouter
 import time
 
 class AnythingLLMIntegration:
