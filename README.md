@@ -5,6 +5,9 @@ This project enhances the open-source RAG system **[AnythingLLM](https://github.
 
 Built for the **COMP S333F (Advanced Programming and AI Algorithms)** course at **Hong Kong Metropolitan University**.
 
+> 🔗 **Note**: This repository contains **Maria's Intelligent Model Router**.  
+> For **Mike’s Semantic RAG Pipeline & Evaluation**, see: [https://github.com/Mikeahhh/RAG-K-Means-Clustering-Experiment-COMP-4330SEF-S333F-](https://github.com/Mikeahhh/RAG-K-Means-Clustering-Experiment-COMP-4330SEF-S333F-)
+
 ---
 
 ## 🎯 Problem
@@ -14,25 +17,27 @@ AnythingLLM uses a **static, workspace-level LLM** for all queries — whether a
 
 ---
 
-## 💡 Solution: Dual-Layer Architecture
+## 💡 Solution: Dual-Layer Architecture (Two Repositories)
 
-### 1. **Semantic RAG Pipeline** *(by Mike)*
+### 1. **Semantic RAG Pipeline** *(by Mike)*  
+> 📁 **[GitHub: Mikeahhh/RAG-K-Means...](https://github.com/Mikeahhh/RAG-K-Means-Clustering-Experiment-COMP-4330SEF-S333F-)**  
 - Grounds answers in the official **Lab 3 solution document** (15 ground-truth Q&A pairs)
 - Uses **`BAAI/bge-m3` embeddings** + **K-means clustering (K=5–14)** for semantic retrieval
 - Evaluates answer quality using **semantic similarity + ROUGE-L F1**
 
-### 2. **Intelligent Model Router** *(by Maria)*
+### 2. **Intelligent Model Router** *(by Maria)*  
+> 📁 **This Repository**  
 - Classifies queries as **Simple**, **Explanatory**, or **Technical**
 - Dynamically routes to the best local LLM:
-  - `llama2-chinese` → **Fast** (1.7s) for simple facts
-  - `deepseek-r1:32b` → **Balanced** for explanations
-  - `gpt-oss:20b` → **High-quality** (0.73 score) for analytical tasks
+  - `llama2-chinese` → **Fast** (1.7s) for simple facts  
+  - `deepseek-r1:32b` → **Balanced** for explanations  
+  - `gpt-oss:20b` → **High-quality** (0.73 score) for analytical tasks  
 
 > ✨ **No modification to AnythingLLM core** — works as an external pre-processing layer.
 
 ---
 
-## 📊 Key Results
+## 📊 Key Results (From Combined Evaluation)
 | Query Type | Model | Avg Time | Final Score |
 |-----------|-------|----------|-------------|
 | Simple (e.g., “Is poker static?”) | `llama2-chinese` | **1.7s** | 0.60 |
@@ -43,34 +48,32 @@ AnythingLLM uses a **static, workspace-level LLM** for all queries — whether a
 
 ---
 
-## ⚙️ Tech Stack
-- **RAG Framework**: AnythingLLM (v1.9.0) + Ollama
-- **Embeddings**: `BAAI/bge-m3` (1024-dim semantic vectors)
-- **Clustering**: K-means (scikit-learn)
-- **LLMs**: `gpt-oss:20b`, `deepseek-r1:32b`, `llama2-chinese`
-- **Evaluation**: Semantic similarity, ROUGE-L F1, weighted final score (`0.6*semantic + 0.4*rouge`)
-- **Hardware**: Windows 11, RTX 5060, 32GB RAM
+## 🛠️ Tech Stack (This Repository)
+- **Router Logic**: Rule-based classifier (Python)
+- **LLMs Supported**: `gpt-oss:20b`, `deepseek-r1:32b`, `llama2-chinese`
+- **Integration**: Simulated API calls to AnythingLLM
+- **Hardware**: Tested on Windows 11, RTX 5060, 32GB RAM
 
 ---
 
 ## 🚀 Quick Start
-1. **Install Ollama** and pull required models:
-   ```bash
-   ollama pull gpt-oss:20b
-   ollama pull deepseek-r1:32b
-   ollama pull llama2-chinese
-
-2. Install Python dependencies:
+1. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
-
-3. Run the evaluation
+2. **Run the router demo**:
    ```bash
+   python ImprovedRouter.py
+3. **See integration simulation**:
+  ```bash
+  python integration_demo.py
+  ```
+---
 
-## 🙏 Acknowledgements
-The design of the Intelligent Model Router was inspired by the dynamic model routing logic in the open-source project **[PatioAI](https://github.com/AKIFQ/patioai)**.  
-Specifically, the rule-based classification approach builds upon concepts from [`lib/ai/modelRouter.ts`](https://github.com/AKIFQ/patioai/blob/aa3cda3f8d0bd0a48f8e2ba740805dc4a4994bd1/lib/ai/modelRouter.ts#L25).
+🙏 **Acknowledgements**
+The design of the Intelligent Model Router was inspired by the dynamic model routing logic in the open-source project PatioAI (https://github.com/AKIFQ/patioai?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL).
+This project adapts and extends that idea into a quantitatively evaluated, query-aware router for Retrieval-Augmented Generation (RAG) systems.
 
-This project adapts and extends that idea into a **quantitatively evaluated, query-aware router** for Retrieval-Augmented Generation (RAG) systems.
-   python rag_qa_bgem3_eval.py
-
+📚 References
+AnythingLLM (https://github.com/Mintplex-Labs/anything-llm?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL)
+BGE-M3 Embeddings (https://huggingface.co/BAAI/bge-m3?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL)
+Asai et al. (2023). Self-RAG (https://arxiv.org/abs/2310.11511?spm=a2ty_o01.29997173.0.0.7e545171LtLBlL&file=2310.11511)
