@@ -29,15 +29,15 @@ class ImprovedRouter:
     def __init__(self):
         #Our models used for testing on AnythingLLM
         self.model_performance = {
-            "gt-oss:20b": {"quality":10, "speed": 7.0},
-            "deepseek-r1:14b": {"quality":9, "speed": 5.0},
-            "llama2-chinese": {"quality": 6.3, "speed": 2.0}
+            "gt-oss:20b": {"quality":10, "speed": 30.6},
+            "deepseek-r1:14b": {"quality":9, "speed": 36.0},
+            "llama2-chinese": {"quality": 6.3, "speed": 1.7}
         }
         
         #Patterns recognized from course content testing: Using COMPS333F_LAB3_SOLUTIONS
         self.technical_indicators = [
             'deterministic', 'environment', 'dimension', 'performance',
-            'evaluation', 'analysis', 'classification', 'probablity',
+            'evaluation', 'analysis', 'classification', 'probability',
             'statistical', 'algorithm', 'complexity', 'search'
         ]
         
@@ -89,14 +89,14 @@ class ImprovedRouter:
         
         #DECISION TREE LOGIC TO SELECT OPTIMAL MODEL BASED ON COUNTS(or scores)
         if analysis["tech_count"] >= 2:
-            return "gt-oss:20b" #BEST FOR TECHNICAL CONTENT
+            return "gpt-oss:20b" #BEST FOR TECHNICAL CONTENT
         elif analysis["explain_count"] >= 1:
-            return "deepseek-r1:14b" #BEST FOR EXPLANATIONS
+            return "deepseek-r1:32b" #BEST FOR EXPLANATIONS
         elif analysis["simple_count"] >= 1 or analysis["complexity"] == "simple":
             return "llama2-chinese" #BEST FOR SHORT AND SIMPLE ANSWERS
         else:
             #DEFAULT BALANCED MODEL OFFERING GOOD RESPONSES + FAST RESPONSES
-            return "deepseek-r1:14b"
+            return "deepseek-r1:32b"
         
     def get_routing_decision(self, question: str) -> str:
         """
@@ -133,7 +133,7 @@ class ImprovedRouter:
         print("-" * 60)
         
         for question in test_questions:
-            manual_model = "gt-oss:20b"
+            manual_model = "gpt-oss:20b"
             auto_model = self.select_optimal_model(question)
             
             manual_perf = self.model_performance[manual_model]
