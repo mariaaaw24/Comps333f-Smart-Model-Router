@@ -61,7 +61,7 @@ class AnythingLLMIntegration:
         print("\n4.SIMULATED API RESPONSE")
         print("- Status: 200 OK")
         print("- Response: Chat response would be returned here")
-        print("- Actual model used: AnythingLLM would use our selected model")
+        print("- Actual model used: Improved router dynamically overrides AnythingLLM's static model choice")
         
         #Performance comparison
         print("\n5.PERFORMANCE COMPARISON")
